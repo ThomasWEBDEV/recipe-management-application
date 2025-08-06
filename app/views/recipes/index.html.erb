@@ -1,2 +1,22 @@
-<h1>Recipes#index</h1>
-<p>Find me in app/views/recipes/index.html.erb</p>
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url('https://picsum.photos/1200/400?food');">
+  <div class="container">
+    <h1>Mes Recettes de Cuisine</h1>
+    <p>Découvrez et partagez vos meilleures recettes</p>
+    <% if user_signed_in? %>
+      <%= link_to "Ajouter une recette", new_recipe_path, class: "btn btn-flat" %>
+    <% end %>
+  </div>
+</div>
+
+<div class="container mt-4">
+  <div class="cards">
+    <% @recipes.each do |recipe| %>
+      <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://picsum.photos/seed/<%= recipe.id %>/400/300')">
+        <%= link_to recipe.title, recipe, class: "text-decoration-none text-white" %>
+        <div class="badge bg-primary position-absolute top-0 end-0 m-2">
+          <%= recipe.category %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

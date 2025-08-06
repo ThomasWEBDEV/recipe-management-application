@@ -12,7 +12,7 @@ class IngredientsController < ApplicationController
     if @ingredient.save
       redirect_to @recipe
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 

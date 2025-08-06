@@ -1,2 +1,27 @@
-<h1>Ingredients#new</h1>
-<p>Find me in app/views/ingredients/new.html.erb</p>
+<h1>Ajouter un ingrédient</h1>
+<p>Pour : <strong><%= @recipe.title %></strong></p>
+
+<%= form_with model: [@recipe, @ingredient] do |form| %>
+  <% if @ingredient.errors.any? %>
+    <div class="alert alert-danger">
+      <ul>
+        <% @ingredient.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="mb-3">
+    <%= form.label :name, "Nom", class: "form-label" %>
+    <%= form.text_field :name, class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :quantity, "Quantité", class: "form-label" %>
+    <%= form.text_field :quantity, class: "form-control", placeholder: "ex: 200g, 2 cuillères..." %>
+  </div>
+
+  <%= form.submit "Ajouter", class: "btn btn-flat" %>
+  <%= link_to "Retour", @recipe, class: "btn btn-ghost" %>
+<% end %>

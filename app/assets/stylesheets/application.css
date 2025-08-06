@@ -1,15 +1,103 @@
-/*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS (and SCSS, if configured) file within this directory, lib/assets/stylesheets, or any plugin's
- * vendor/assets/stylesheets directory can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any other CSS
- * files in this directory. Styles in this file should be added after the last require_* statement.
- * It is generally better to create a new file per style scope.
- *
- *= require_tree .
- *= require_self
- */
+/* Navbar Le Wagon */
+.navbar-lewagon {
+  justify-content: space-between;
+  background: white;
+  box-shadow: 0 2px 4px rgba(0,0,0,.1);
+}
+
+.navbar-lewagon .navbar-brand {
+  color: #167FFB;
+  font-weight: bold;
+}
+
+/* Banner */
+.banner {
+  background-size: cover;
+  background-position: center;
+  padding: 150px 0;
+  margin-bottom: 32px;
+}
+
+.banner h1 {
+  color: white;
+  font-size: 48px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.banner p {
+  color: white;
+  font-size: 20px;
+  opacity: .8;
+  margin-bottom: 30px;
+}
+
+/* Buttons */
+.btn-flat {
+  color: white;
+  padding: 8px 24px;
+  background: #167FFB;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.btn-ghost {
+  color: #4A4A4A;
+  border: 1px solid #4A4A4A;
+  padding: 8px 24px;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.btn-gradient {
+  color: white;
+  padding: 8px 24px;
+  background: linear-gradient(#167FFB, #0F60C4);
+  text-decoration: none;
+  display: inline-block;
+}
+
+/* Cards Grid */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-gap: 16px;
+}
+
+/* Card Category */
+.card-category {
+  background-size: cover;
+  background-position: center;
+  height: 180px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  font-weight: bold;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+  position: relative;
+}
+
+/* Card Trip */
+.card-trip {
+  overflow: hidden;
+  background: white;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  margin-bottom: 20px;
+}
+
+.card-trip img {
+  height: 300px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.card-trip-infos {
+  padding: 16px;
+}
+
+.card-trip-infos h2 {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 0;
+}
