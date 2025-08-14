@@ -21,6 +21,15 @@
           <i class="fas fa-utensils"></i> Mes Recettes
         <% end %>
 
+        <!-- Formulaire de recherche -->
+        <%= form_with url: recipes_path, method: :get, class: "d-flex flex-grow-1 mx-4" do |f| %>
+          <%= f.text_field :query,
+              placeholder: "Rechercher une recette...",
+              value: params[:query],
+              class: "form-control me-2" %>
+          <%= f.submit "Rechercher", class: "btn btn-flat" %>
+        <% end %>
+
         <div class="collapse navbar-collapse">
           <ul class="navbar-nav ms-auto">
             <% if user_signed_in? %>
