@@ -9,6 +9,16 @@
 </div>
 
 <div class="container mt-4">
+  <% if params[:query].present? %>
+    <div class="alert alert-info">
+      <% if @recipes.any? %>
+        <%= pluralize(@recipes.count, "recette trouvée", "recettes trouvées") %> pour "<%= params[:query] %>"
+      <% else %>
+        Aucune recette trouvée pour "<%= params[:query] %>"
+      <% end %>
+      <%= link_to "Voir toutes les recettes", recipes_path, class: "btn btn-ghost btn-sm ms-3" %>
+    </div>
+  <% end %>
   <div class="cards">
     <% @recipes.each do |recipe| %>
       <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://picsum.photos/seed/<%= recipe.id %>/400/300')">
