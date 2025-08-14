@@ -19,6 +19,15 @@
       <%= link_to "Voir toutes les recettes", recipes_path, class: "btn btn-ghost btn-sm ms-3" %>
     </div>
   <% end %>
+
+  <!-- Filtres rapides -->
+  <div class="mb-4">
+    <%= link_to "Toutes", recipes_path, class: "btn btn-ghost" %>
+    <%= link_to "Entrées", recipes_path(query: "entrée"), class: "btn btn-ghost" %>
+    <%= link_to "Plats", recipes_path(query: "plat"), class: "btn btn-ghost" %>
+    <%= link_to "Desserts", recipes_path(query: "dessert"), class: "btn btn-ghost" %>
+  </div>
+
   <div class="cards">
     <% @recipes.each do |recipe| %>
       <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://picsum.photos/seed/<%= recipe.id %>/400/300')">
