@@ -30,11 +30,21 @@
 
   <div class="cards">
     <% @recipes.each do |recipe| %>
-      <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://picsum.photos/seed/<%= recipe.id %>/400/300')">
+      <div class="card-category position-relative" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://picsum.photos/seed/<%= recipe.id %>/400/300')">
         <%= link_to recipe.title, recipe, class: "text-decoration-none text-white" %>
+
+        <!-- Badge catégorie en haut à droite -->
         <div class="badge bg-primary position-absolute top-0 end-0 m-2">
           <%= recipe.category %>
         </div>
+
+        <!-- Badge temps total en bas à gauche -->
+        <% total_time = recipe.prep_time.to_i + recipe.cook_time.to_i %>
+        <% if total_time > 0 %>
+          <div class="badge bg-dark position-absolute bottom-0 start-0 m-2">
+            <i class="fas fa-clock"></i> <%= total_time %> min
+          </div>
+        <% end %>
       </div>
     <% end %>
   </div>
