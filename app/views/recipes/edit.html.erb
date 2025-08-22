@@ -26,6 +26,18 @@
     <%= form.select :category, ['entrée', 'plat', 'dessert'], {}, class: "form-control" %>
   </div>
 
+  <div class="row">
+    <div class="col-md-6">
+      <%= form.label :prep_time, "Temps de préparation (minutes)", class: "form-label" %>
+      <%= form.number_field :prep_time, class: "form-control", placeholder: "ex: 15", min: 0 %>
+    </div>
+
+    <div class="col-md-6">
+      <%= form.label :cook_time, "Temps de cuisson (minutes)", class: "form-label" %>
+      <%= form.number_field :cook_time, class: "form-control", placeholder: "ex: 30", min: 0 %>
+    </div>
+  </div>
+
   <%= form.submit "Mettre à jour", class: "btn btn-flat" %>
   <%= link_to "Annuler", @recipe, class: "btn btn-ghost" %>
 <% end %>
