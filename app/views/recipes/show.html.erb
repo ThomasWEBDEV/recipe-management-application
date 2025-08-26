@@ -12,6 +12,20 @@
     </div>
 
     <div class="d-flex gap-3 my-3">
+
+      <div class="d-flex gap-3 my-3">
+      <% if @recipe.difficulty.present? %>
+        <% difficulty_color = { 'facile' => 'success', 'moyen' => 'warning', 'difficile' => 'danger' }[@recipe.difficulty] %>
+        <span class="badge bg-<%= difficulty_color %>">
+          <% if @recipe.difficulty == 'facile' %>
+            <i class="fas fa-smile"></i> Facile
+          <% elsif @recipe.difficulty == 'moyen' %>
+            <i class="fas fa-meh"></i> Moyen
+          <% else %>
+            <i class="fas fa-tired"></i> Difficile
+          <% end %>
+        </span>
+      <% end %>
       <% if @recipe.prep_time.present? %>
         <span class="badge bg-info text-dark">
           <i class="fas fa-clock"></i> Préparation : <%= @recipe.prep_time %> min
