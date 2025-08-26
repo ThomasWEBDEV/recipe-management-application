@@ -26,6 +26,13 @@
     <%= form.select :category, ['entrée', 'plat', 'dessert'], {}, class: "form-control" %>
   </div>
 
+  <div class="mb-3">
+    <%= form.label :difficulty, "Difficulté", class: "form-label" %>
+    <%= form.select :difficulty, ['facile', 'moyen', 'difficile'],
+        { prompt: 'Choisir la difficulté' },
+        class: "form-control" %>
+  </div>
+
   <div class="row">
     <div class="col-md-6">
       <%= form.label :prep_time, "Temps de préparation (minutes)", class: "form-label" %>
