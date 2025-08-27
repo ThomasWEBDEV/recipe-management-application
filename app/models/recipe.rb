@@ -1,11 +1,12 @@
 class Recipe < ApplicationRecord
   belongs_to :user
   has_many :ingredients, dependent: :destroy
+  has_many :favorites, dependent: :destroy
+  has_many :favorited_by, through: :favorites, source: :user
 
   validates :title, presence: true, length: { minimum: 3, maximum: 100 }
   validates :description, presence: true, length: { minimum: 10, maximum: 1000 }
   validates :category, presence: true, inclusion: { in: %w[entrée plat dessert] }
-  validates :difficulty, inclusion: { in: %w[facile moyen difficile], allow_nil: true }
 
   # Méthode de recherche
   def self.search(query)
@@ -15,5 +16,10 @@ class Recipe < ApplicationRecord
     else
       all
     end
+  end
+
+  # Méthode pour compter les favoris
+  def favorites_count
+    favorites.count
   end
 end
