@@ -1,0 +1,20 @@
+<% if user_signed_in? %>
+  <% if current_user.favorited?(recipe) %>
+    <%= button_to recipe_favorite_path(recipe),
+        method: :delete,
+        class: "btn btn-danger btn-sm",
+        data: { turbo_confirm: "Retirer des favoris ?" } do %>
+      <i class="fas fa-heart"></i> En favoris (<%= recipe.favorites_count %>)
+    <% end %>
+  <% else %>
+    <%= button_to recipe_favorite_path(recipe),
+        method: :post,
+        class: "btn btn-outline-danger btn-sm" do %>
+      <i class="far fa-heart"></i> Ajouter aux favoris (<%= recipe.favorites_count %>)
+    <% end %>
+  <% end %>
+<% else %>
+  <span class="text-muted">
+    <i class="far fa-heart"></i> <%= recipe.favorites_count %> favoris
+  </span>
+<% end %>
