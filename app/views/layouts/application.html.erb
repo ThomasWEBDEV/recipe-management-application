@@ -37,6 +37,14 @@
                 <%= link_to "Nouvelle recette", new_recipe_path, class: "nav-link" %>
               </li>
               <li class="nav-item">
+                <%= link_to favorites_path, class: "nav-link" do %>
+                  <i class="fas fa-heart text-danger"></i> Mes favoris
+                  <% if current_user.favorites.any? %>
+                    <span class="badge bg-danger rounded-pill"><%= current_user.favorites.count %></span>
+                  <% end %>
+                <% end %>
+              </li>
+              <li class="nav-item">
                 <%= link_to "Déconnexion", destroy_user_session_path, data: { "turbo-method": :delete }, class: "nav-link" %>
               </li>
             <% else %>
