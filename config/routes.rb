@@ -4,5 +4,10 @@ Rails.application.routes.draw do
 
   resources :recipes do
     resources :ingredients, only: [:new, :create, :destroy]
+    # Routes pour favoris
+    resource :favorite, only: [:create, :destroy]
   end
+
+  # Route pour voir les favoris d'un utilisateur
+  resources :favorites, only: [:index]
 end
