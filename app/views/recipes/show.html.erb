@@ -4,11 +4,19 @@
       <%= image_tag "https://picsum.photos/seed/#{@recipe.id}/800/400", class: "w-100" %>
       <div class="card-trip-infos">
         <div>
-          <h2><%= @recipe.title %></h2>
+          <div class="d-flex align-items-center justify-content-between mb-2">
+            <h2><%= @recipe.title %></h2>
+            <%= render 'shared/favorite_button', recipe: @recipe %>
+          </div>
           <p><%= @recipe.description %></p>
           <div class="d-flex justify-content-between align-items-center">
-            <span class="badge bg-primary"><%= @recipe.category %></span>
-            <%= render 'shared/favorite_button', recipe: @recipe %>
+            <div class="d-flex align-items-center">
+              <span class="badge bg-primary me-2"><%= @recipe.category %></span>
+              <div class="d-flex align-items-center text-muted">
+                <%= user_avatar(@recipe.user, size: 24) %>
+                <small class="ms-2">Par <%= @recipe.user.email.split('@').first.capitalize %></small>
+              </div>
+            </div>
           </div>
         </div>
       </div>
