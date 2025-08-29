@@ -7,6 +7,8 @@ class RecipesController < ApplicationController
 
   def show
     @recipe = Recipe.find(params[:id])
+    # Incrémenter les vues (sauf pour le propriétaire)
+    @recipe.increment!(:views_count) unless current_user == @recipe.user
   end
 
   def new
