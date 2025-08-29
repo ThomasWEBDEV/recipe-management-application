@@ -24,6 +24,11 @@
 
     <!-- Badges informatifs -->
     <div class="d-flex gap-2 flex-wrap my-3">
+      <!-- Badge de vues (nouveau) -->
+      <span class="badge bg-secondary">
+        <i class="fas fa-eye"></i> <%= pluralize(@recipe.views_count, 'vue') %>
+      </span>
+
       <% if @recipe.difficulty.present? %>
         <% difficulty_color = { 'facile' => 'success', 'moyen' => 'warning', 'difficile' => 'danger' }[@recipe.difficulty] %>
         <span class="badge bg-<%= difficulty_color %>">
