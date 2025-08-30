@@ -1,30 +1,18 @@
-/* Modern Card Hover Effects */
-.card {
-  transition: all 0.3s ease;
-  border: none;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
-}
-
-.card-trip {
-  transition: all 0.3s ease;
-  border-radius: 12px;
-  overflow: hidden;
-}
-
-.card-trip:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
-}
+/* Card Styles avec effets hover modernes */
 
 .card-category {
+  background-size: cover;
+  background-position: center;
+  height: 180px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  font-weight: bold;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+  position: relative;
   transition: all 0.3s ease;
   border-radius: 12px;
-  position: relative;
   overflow: hidden;
 }
 
@@ -35,10 +23,7 @@
 .card-category::before {
   content: '';
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  top: 0; left: 0; right: 0; bottom: 0;
   background: linear-gradient(45deg, rgba(22, 127, 251, 0.8), rgba(255, 107, 107, 0.8));
   opacity: 0;
   transition: opacity 0.3s ease;
@@ -57,7 +42,53 @@
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
-/* Badge animations */
+.card-trip {
+  overflow: hidden;
+  background: white;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  margin-bottom: 20px;
+  transition: all 0.3s ease;
+  border-radius: 12px;
+}
+
+.card-trip:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+}
+
+.card-trip img {
+  height: 300px;
+  width: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.card-trip:hover img {
+  transform: scale(1.1);
+}
+
+.card-trip-infos {
+  padding: 16px;
+}
+
+.card-trip-infos h2 {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 0;
+}
+
+/* Bootstrap Cards override */
+.card {
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Interactive elements */
 .badge {
   transition: all 0.2s ease;
 }
@@ -66,7 +97,6 @@
   transform: scale(1.1);
 }
 
-/* Button hover improvements */
 .btn {
   transition: all 0.3s ease;
   border-radius: 8px;
@@ -76,22 +106,14 @@
   transform: translateY(-2px);
 }
 
+/* Spécifique aux boutons custom pour override Bootstrap */
 .btn-flat:hover {
-  background: #0F60C4;
+  background: #0F60C4 !important;
   box-shadow: 0 4px 12px rgba(22, 127, 251, 0.3);
 }
 
 .btn-ghost:hover {
-  background: rgba(22, 127, 251, 0.1);
-  border-color: #167FFB;
-  color: #167FFB;
-}
-
-/* Image hover effects */
-.card img {
-  transition: transform 0.3s ease;
-}
-
-.card:hover img {
-  transform: scale(1.1);
+  background: rgba(22, 127, 251, 0.1) !important;
+  border-color: #167FFB !important;
+  color: #167FFB !important;
 }

@@ -1,3 +1,8 @@
+/*
+ *= require_tree .
+ *= require_self
+ */
+
 /* Navbar Le Wagon */
 .navbar-lewagon {
   justify-content: space-between;
@@ -62,42 +67,4 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   grid-gap: 16px;
-}
-
-/* Card Category */
-.card-category {
-  background-size: cover;
-  background-position: center;
-  height: 180px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 24px;
-  font-weight: bold;
-  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
-  position: relative;
-}
-
-/* Card Trip */
-.card-trip {
-  overflow: hidden;
-  background: white;
-  box-shadow: 0 0 15px rgba(0,0,0,0.2);
-  margin-bottom: 20px;
-}
-
-.card-trip img {
-  height: 300px;
-  width: 100%;
-  object-fit: cover;
-}
-
-.card-trip-infos {
-  padding: 16px;
-}
-
-.card-trip-infos h2 {
-  font-size: 24px;
-  font-weight: bold;
-  margin: 0;
 }
