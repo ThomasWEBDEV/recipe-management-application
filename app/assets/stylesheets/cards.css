@@ -1,0 +1,97 @@
+/* Modern Card Hover Effects */
+.card {
+  transition: all 0.3s ease;
+  border: none;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
+}
+
+.card-trip {
+  transition: all 0.3s ease;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.card-trip:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+}
+
+.card-category {
+  transition: all 0.3s ease;
+  border-radius: 12px;
+  position: relative;
+  overflow: hidden;
+}
+
+.card-category:hover {
+  transform: scale(1.05);
+}
+
+.card-category::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, rgba(22, 127, 251, 0.8), rgba(255, 107, 107, 0.8));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.card-category:hover::before {
+  opacity: 1;
+}
+
+.card-category a {
+  position: relative;
+  z-index: 2;
+  text-decoration: none;
+  color: white !important;
+  font-weight: bold;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Badge animations */
+.badge {
+  transition: all 0.2s ease;
+}
+
+.badge:hover {
+  transform: scale(1.1);
+}
+
+/* Button hover improvements */
+.btn {
+  transition: all 0.3s ease;
+  border-radius: 8px;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+.btn-flat:hover {
+  background: #0F60C4;
+  box-shadow: 0 4px 12px rgba(22, 127, 251, 0.3);
+}
+
+.btn-ghost:hover {
+  background: rgba(22, 127, 251, 0.1);
+  border-color: #167FFB;
+  color: #167FFB;
+}
+
+/* Image hover effects */
+.card img {
+  transition: transform 0.3s ease;
+}
+
+.card:hover img {
+  transform: scale(1.1);
+}
