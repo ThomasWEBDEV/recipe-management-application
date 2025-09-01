@@ -59,6 +59,12 @@
           <i class="fas fa-utensils"></i> Total : <%= @recipe.prep_time + @recipe.cook_time %> min
         </span>
       <% end %>
+
+
+      <!-- Badge de date (nouveau - ultra simple) -->
+        <span class="badge bg-light text-dark">
+          <i class="fas fa-calendar"></i> <%= @recipe.created_at.strftime("Créée le %d/%m/%Y") %>
+        </span>
     </div>
 
     <!-- Actions utilisateur -->
