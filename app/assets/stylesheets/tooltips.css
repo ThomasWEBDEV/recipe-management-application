@@ -1,0 +1,95 @@
+/* Custom Tooltips */
+
+[data-tooltip] {
+  position: relative;
+  cursor: help;
+}
+
+[data-tooltip]:before {
+  content: attr(data-tooltip);
+  position: absolute;
+  background: #333;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  white-space: nowrap;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+
+  /* Position au-dessus par défaut */
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-8px);
+}
+
+[data-tooltip]:after {
+  content: '';
+  position: absolute;
+  border: 6px solid transparent;
+  border-top-color: #333;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+
+  /* Flèche pointant vers le haut */
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(2px);
+}
+
+[data-tooltip]:hover:before,
+[data-tooltip]:hover:after {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* Tooltip position variants */
+[data-tooltip-pos="bottom"]:before {
+  top: 100%;
+  bottom: auto;
+  transform: translateX(-50%) translateY(8px);
+}
+
+[data-tooltip-pos="bottom"]:after {
+  top: 100%;
+  bottom: auto;
+  border-top-color: transparent;
+  border-bottom-color: #333;
+  transform: translateX(-50%) translateY(-2px);
+}
+
+[data-tooltip-pos="bottom"]:hover:before,
+[data-tooltip-pos="bottom"]:hover:after {
+  transform: translateX(-50%) translateY(0);
+}
+
+/* Styles pour différents types */
+.badge[data-tooltip]:before {
+  background: #495057;
+  font-size: 11px;
+}
+
+.btn[data-tooltip]:before {
+  background: #167FFB;
+}
+
+/* Animation d'apparition */
+[data-tooltip]:hover:before {
+  animation: tooltipFadeIn 0.2s ease-out;
+}
+
+@keyframes tooltipFadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
