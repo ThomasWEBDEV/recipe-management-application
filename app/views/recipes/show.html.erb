@@ -42,29 +42,48 @@
         </span>
       <% end %>
 
-      <% if @recipe.prep_time.present? %>
-        <span class="badge bg-info text-dark" data-tooltip="Temps nécessaire pour préparer les ingrédients">
-          <i class="fas fa-clock"></i> Préparation : <%= @recipe.prep_time %> min
-        </span>
-      <% end %>
-
-      <% if @recipe.cook_time.present? %>
-        <span class="badge bg-warning text-dark" data-tooltip="Temps de cuisson nécessaire">
-          <i class="fas fa-fire"></i> Cuisson : <%= @recipe.cook_time %> min
-        </span>
-      <% end %>
-
-      <% if @recipe.prep_time.present? && @recipe.cook_time.present? %>
-        <span class="badge bg-success" data-tooltip="Temps total pour réaliser cette recette">
-          <i class="fas fa-utensils"></i> Total : <%= @recipe.prep_time + @recipe.cook_time %> min
-        </span>
-      <% end %>
-
       <!-- Badge de date (avec tooltip) -->
       <span class="badge bg-light text-dark" data-tooltip="Date à laquelle cette recette a été créée">
         <i class="fas fa-calendar"></i> <%= @recipe.created_at.strftime("Créée le %d/%m/%Y") %>
       </span>
     </div>
+
+    <!-- Progress bars pour les temps -->
+    <% if @recipe.prep_time.present? || @recipe.cook_time.present? %>
+      <div class="recipe-progress">
+        <h6 class="mb-3"><i class="fas fa-clock me-2"></i>Temps de réalisation</h6>
+
+        <% if @recipe.prep_time.present? %>
+          <div class="progress-item">
+            <div class="progress-label">Préparation</div>
+            <div class="progress-bar-container">
+              <div class="progress-bar-fill progress-prep" style="width: <%= [@recipe.prep_time.to_f / 60 * 100, 100].min %>%"></div>
+            </div>
+            <div class="progress-time"><%= @recipe.prep_time %> min</div>
+          </div>
+        <% end %>
+
+        <% if @recipe.cook_time.present? %>
+          <div class="progress-item">
+            <div class="progress-label">Cuisson</div>
+            <div class="progress-bar-container">
+              <div class="progress-bar-fill progress-cook" style="width: <%= [@recipe.cook_time.to_f / 60 * 100, 100].min %>%"></div>
+            </div>
+            <div class="progress-time"><%= @recipe.cook_time %> min</div>
+          </div>
+        <% end %>
+
+        <% if @recipe.prep_time.present? && @recipe.cook_time.present? %>
+          <div class="progress-item">
+            <div class="progress-label"><strong>Total</strong></div>
+            <div class="progress-bar-container">
+              <div class="progress-bar-fill progress-total" style="width: <%= [(@recipe.prep_time + @recipe.cook_time).to_f / 60 * 100, 100].min %>%"></div>
+            </div>
+            <div class="progress-time"><strong><%= @recipe.prep_time + @recipe.cook_time %> min</strong></div>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
 
     <!-- Actions utilisateur -->
     <% if @recipe.user == current_user %>
