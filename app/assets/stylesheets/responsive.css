@@ -1,0 +1,213 @@
+/* Responsive Design & Final Touches */
+
+/* Mobile First Approach */
+@media (max-width: 576px) {
+  /* Hero Section Mobile */
+  .hero-section {
+    padding: 60px 0;
+  }
+
+  .hero-title {
+    font-size: 2.5rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1.1rem;
+  }
+
+  .btn-hero {
+    padding: 12px 24px;
+    font-size: 1rem;
+    margin-bottom: 10px;
+    display: block;
+    text-align: center;
+  }
+
+  /* Stats Cards Mobile */
+  .stat-card {
+    margin-bottom: 20px;
+    padding: 20px 15px;
+  }
+
+  .stat-card h3 {
+    font-size: 1.8rem;
+  }
+
+  /* Filter Pills Mobile */
+  .filter-pills {
+    justify-content: center;
+  }
+
+  .filter-pill {
+    padding: 10px 16px;
+    font-size: 0.85rem;
+  }
+
+  /* Recipe Cards Mobile */
+  .recipes-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 0 10px;
+  }
+
+  .recipe-content {
+    padding: 20px;
+  }
+
+  .recipe-title {
+    font-size: 1.1rem;
+  }
+
+  .recipe-meta {
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+  }
+}
+
+/* Tablet */
+@media (min-width: 577px) and (max-width: 992px) {
+  .recipes-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+  }
+
+  .hero-title {
+    font-size: 3rem;
+  }
+
+  .stat-card h3 {
+    font-size: 2.2rem;
+  }
+}
+
+/* Large Desktop */
+@media (min-width: 1400px) {
+  .recipes-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .hero-title {
+    font-size: 4rem;
+  }
+
+  .container-fluid {
+    padding-left: 60px;
+    padding-right: 60px;
+  }
+}
+
+/* Animations & Interactions */
+.recipe-card {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.recipe-card:nth-child(1) { animation-delay: 0.1s; }
+.recipe-card:nth-child(2) { animation-delay: 0.2s; }
+.recipe-card:nth-child(3) { animation-delay: 0.3s; }
+.recipe-card:nth-child(4) { animation-delay: 0.4s; }
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Stat Cards Animation */
+.stat-card {
+  animation: slideInUp 0.8s ease-out;
+}
+
+.stat-card:nth-child(1) { animation-delay: 0.2s; }
+.stat-card:nth-child(2) { animation-delay: 0.4s; }
+.stat-card:nth-child(3) { animation-delay: 0.6s; }
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Scroll Animations */
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s ease;
+}
+
+.animate-on-scroll.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Loading States */
+.recipe-card.loading {
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.recipe-card.loading .recipe-image::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* Accessibility */
+.btn:focus,
+.form-control:focus {
+  outline: 2px solid #667eea;
+  outline-offset: 2px;
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Print Styles */
+@media print {
+  .navbar,
+  .hero-section,
+  .filter-pills,
+  .btn {
+    display: none !important;
+  }
+
+  .recipe-card {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+}
+
+/* Dark Mode Support (if needed later) */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-color: #1a202c;
+    --text-color: #f7fafc;
+    --card-bg: #2d3748;
+  }
+}
