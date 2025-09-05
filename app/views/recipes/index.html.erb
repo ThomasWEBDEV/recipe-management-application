@@ -1,51 +1,137 @@
-<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url('https://picsum.photos/1200/400?food');">
+<!-- Hero Section moderne -->
+<div class="hero-section">
   <div class="container">
-    <h1>Mes Recettes de Cuisine</h1>
-    <p>Découvrez et partagez vos meilleures recettes</p>
-    <% if user_signed_in? %>
-      <%= link_to "Ajouter une recette", new_recipe_path, class: "btn btn-flat" %>
-    <% end %>
+    <div class="hero-content">
+      <h1 class="hero-title">Mes Recettes de Cuisine</h1>
+      <p class="hero-subtitle">Découvrez, partagez et savourez vos meilleures recettes</p>
+      <div class="hero-cta">
+        <% if user_signed_in? %>
+          <%= link_to "Créer ma recette", new_recipe_path, class: "btn-hero me-3" %>
+          <%= link_to "Explorer", "#recipes", class: "btn btn-outline-light" %>
+        <% else %>
+          <%= link_to "Commencer", new_user_registration_path, class: "btn-hero me-3" %>
+          <%= link_to "Se connecter", new_user_session_path, class: "btn btn-outline-light" %>
+        <% end %>
+      </div>
+    </div>
   </div>
 </div>
 
-<div class="container mt-4">
+<!-- Section principale -->
+<div class="container-fluid px-4" id="recipes">
+  <!-- Stats rapides -->
+  <div class="row text-center mb-5">
+    <div class="col-md-4">
+      <div class="stat-card">
+        <i class="fas fa-utensils fa-2x text-primary mb-3"></i>
+        <h3><%= @recipes.count %></h3>
+        <p class="text-muted">Recettes disponibles</p>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="stat-card">
+        <i class="fas fa-users fa-2x text-success mb-3"></i>
+        <h3><%= User.count %></h3>
+        <p class="text-muted">Chefs créatifs</p>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="stat-card">
+        <i class="fas fa-heart fa-2x text-danger mb-3"></i>
+        <h3><%= Favorite.count %></h3>
+        <p class="text-muted">Favoris ajoutés</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Recherche et filtres -->
   <% if params[:query].present? %>
-    <div class="alert alert-info">
-      <% if @recipes.any? %>
-        <%= pluralize(@recipes.count, "recette trouvée", "recettes trouvées") %> pour "<%= params[:query] %>"
-      <% else %>
-        Aucune recette trouvée pour "<%= params[:query] %>"
-      <% end %>
-      <%= link_to "Voir toutes les recettes", recipes_path, class: "btn btn-ghost btn-sm ms-3" %>
+    <div class="search-results mb-4">
+      <div class="alert alert-primary d-flex align-items-center">
+        <i class="fas fa-search me-3"></i>
+        <div>
+          <% if @recipes.any? %>
+            <strong><%= pluralize(@recipes.count, "recette trouvée", "recettes trouvées") %></strong> pour "<%= params[:query] %>"
+          <% else %>
+            <strong>Aucune recette trouvée</strong> pour "<%= params[:query] %>"
+          <% end %>
+        </div>
+        <%= link_to "×", recipes_path, class: "btn btn-sm btn-outline-primary ms-auto" %>
+      </div>
     </div>
   <% end %>
 
-  <!-- Filtres rapides -->
-  <div class="mb-4">
-    <%= link_to "Toutes", recipes_path, class: "btn btn-ghost" %>
-    <%= link_to "Entrées", recipes_path(query: "entrée"), class: "btn btn-ghost" %>
-    <%= link_to "Plats", recipes_path(query: "plat"), class: "btn btn-ghost" %>
-    <%= link_to "Desserts", recipes_path(query: "dessert"), class: "btn btn-ghost" %>
+  <!-- Filtres modernes -->
+  <div class="filters-section mb-5">
+    <h3 class="mb-3">Catégories</h3>
+    <div class="filter-pills">
+      <%= link_to recipes_path, class: "filter-pill #{'active' unless params[:query].present?}" do %>
+        <i class="fas fa-th-large me-2"></i>Toutes
+      <% end %>
+      <%= link_to recipes_path(query: "entrée"), class: "filter-pill #{'active' if params[:query] == 'entrée'}" do %>
+        <i class="fas fa-leaf me-2"></i>Entrées
+      <% end %>
+      <%= link_to recipes_path(query: "plat"), class: "filter-pill #{'active' if params[:query] == 'plat'}" do %>
+        <i class="fas fa-drumstick-bite me-2"></i>Plats
+      <% end %>
+      <%= link_to recipes_path(query: "dessert"), class: "filter-pill #{'active' if params[:query] == 'dessert'}" do %>
+        <i class="fas fa-ice-cream me-2"></i>Desserts
+      <% end %>
+    </div>
   </div>
 
-  <div class="cards">
+  <!-- Grille de recettes moderne -->
+  <div class="recipes-grid">
     <% @recipes.each do |recipe| %>
-      <div class="card-category position-relative" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://picsum.photos/seed/<%= recipe.id %>/400/300')">
-        <%= link_to recipe.title, recipe, class: "text-decoration-none text-white" %>
-
-        <!-- Badge catégorie en haut à droite -->
-        <div class="badge bg-primary position-absolute top-0 end-0 m-2">
-          <%= recipe.category %>
-        </div>
-
-        <!-- Badge temps total en bas à gauche -->
-        <% total_time = recipe.prep_time.to_i + recipe.cook_time.to_i %>
-        <% if total_time > 0 %>
-          <div class="badge bg-dark position-absolute bottom-0 start-0 m-2">
-            <i class="fas fa-clock"></i> <%= total_time %> min
+      <div class="recipe-card">
+        <%= link_to recipe, class: "recipe-link" do %>
+          <div class="recipe-image">
+            <%= image_tag "https://picsum.photos/seed/#{recipe.id}/400/250", alt: recipe.title %>
+            <div class="recipe-overlay">
+              <div class="recipe-badges">
+                <span class="badge bg-primary"><%= recipe.category %></span>
+                <% total_time = recipe.prep_time.to_i + recipe.cook_time.to_i %>
+                <% if total_time > 0 %>
+                  <span class="badge bg-dark">
+                    <i class="fas fa-clock"></i> <%= total_time %> min
+                  </span>
+                <% end %>
+              </div>
+            </div>
+          </div>
+          <div class="recipe-content">
+            <h5 class="recipe-title"><%= recipe.title %></h5>
+            <p class="recipe-description"><%= truncate(recipe.description, length: 80) %></p>
+            <div class="recipe-meta">
+              <div class="recipe-author">
+                <%= user_avatar(recipe.user, size: 20) %>
+                <small>Par <%= recipe.user.email.split('@').first.capitalize %></small>
+              </div>
+              <div class="recipe-stats">
+                <span class="stat">
+                  <i class="fas fa-eye"></i> <%= recipe.views_count %>
+                </span>
+                <span class="stat">
+                  <i class="fas fa-heart"></i> <%= recipe.favorites_count %>
+                </span>
+              </div>
+            </div>
           </div>
         <% end %>
       </div>
     <% end %>
   </div>
+
+  <% if @recipes.empty? %>
+    <div class="empty-state text-center py-5">
+      <i class="fas fa-utensils fa-4x text-muted mb-4"></i>
+      <h3>Aucune recette trouvée</h3>
+      <p class="text-muted mb-4">Soyez le premier à partager une délicieuse recette !</p>
+      <% if user_signed_in? %>
+        <%= link_to "Créer ma première recette", new_recipe_path, class: "btn btn-primary" %>
+      <% else %>
+        <%= link_to "S'inscrire pour commencer", new_user_registration_path, class: "btn btn-primary" %>
+      <% end %>
+    </div>
+  <% end %>
 </div>
