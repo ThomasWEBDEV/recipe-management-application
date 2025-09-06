@@ -1,85 +1,38 @@
-/* Floating Action Button */
+/* Floating Action Button - Fixed */
 
 .fab {
-  position: fixed;
-  bottom: 30px;
-  right: 30px;
-  width: 60px;
-  height: 60px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  text-decoration: none;
-  font-size: 24px;
-  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
-  z-index: 1000;
-  transition: all 0.3s ease;
-  border: none;
+  position: fixed !important;
+  bottom: 30px !important;
+  right: 30px !important;
+  left: auto !important;
+  width: 60px !important;
+  height: 60px !important;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+  border-radius: 50% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  color: white !important;
+  text-decoration: none !important;
+  font-size: 24px !important;
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4) !important;
+  z-index: 9999 !important;
+  transition: all 0.3s ease !important;
+  border: none !important;
 }
 
 .fab:hover {
-  transform: scale(1.1);
-  box-shadow: 0 12px 35px rgba(102, 126, 234, 0.6);
-  color: white;
+  transform: scale(1.1) !important;
+  box-shadow: 0 12px 35px rgba(102, 126, 234, 0.6) !important;
+  color: white !important;
 }
 
-.fab:active {
-  transform: scale(0.95);
-}
-
-/* FAB Animation */
-.fab {
-  animation: fabEntrance 0.5s ease-out;
-}
-
-@keyframes fabEntrance {
-  from {
-    opacity: 0;
-    transform: scale(0) rotate(180deg);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1) rotate(0deg);
-  }
-}
-
-/* FAB Tooltip */
-.fab::before {
-  content: 'Nouvelle recette';
-  position: absolute;
-  right: 70px;
-  background: #2d3748;
-  color: white;
-  padding: 8px 12px;
-  border-radius: 6px;
-  font-size: 14px;
-  white-space: nowrap;
-  opacity: 0;
-  visibility: hidden;
-  transition: all 0.3s ease;
-  transform: translateX(10px);
-}
-
-.fab:hover::before {
-  opacity: 1;
-  visibility: visible;
-  transform: translateX(0);
-}
-
-/* Mobile FAB */
+/* Mobile */
 @media (max-width: 768px) {
   .fab {
-    bottom: 20px;
-    right: 20px;
-    width: 56px;
-    height: 56px;
-    font-size: 20px;
-  }
-
-  .fab::before {
-    display: none;
+    bottom: 20px !important;
+    right: 20px !important;
+    width: 56px !important;
+    height: 56px !important;
   }
 }

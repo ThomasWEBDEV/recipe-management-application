@@ -1,118 +1,143 @@
-<div class="row">
-  <div class="col-md-8">
-    <div class="card-trip">
-      <%= image_tag "https://picsum.photos/seed/#{@recipe.id}/800/400", class: "w-100" %>
-      <div class="card-trip-infos">
-        <div>
-          <div class="d-flex align-items-center justify-content-between mb-2">
-            <h2><%= @recipe.title %></h2>
-            <%= render 'shared/favorite_button', recipe: @recipe %>
-          </div>
-          <p><%= @recipe.description %></p>
-          <div class="d-flex justify-content-between align-items-center">
-            <div class="d-flex align-items-center">
-              <span class="badge bg-primary me-2" data-tooltip="Catégorie de cette recette"><%= @recipe.category %></span>
-              <div class="d-flex align-items-center text-muted">
-                <%= user_avatar(@recipe.user, size: 24) %>
-                <small class="ms-2">Par <%= @recipe.user.email.split('@').first.capitalize %></small>
+<!-- Breadcrumbs -->
+<div class="breadcrumb-container">
+  <div class="container">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <%= link_to root_path do %>
+            <i class="fas fa-home"></i> Accueil
+          <% end %>
+        </li>
+        <li class="breadcrumb-item">
+          <%= link_to recipes_path do %>
+            <i class="fas fa-utensils"></i> Recettes
+          <% end %>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">
+          <%= @recipe.title %>
+        </li>
+      </ol>
+    </nav>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-8">
+      <div class="card-trip">
+        <%= image_tag "https://picsum.photos/seed/#{@recipe.id}/800/400", class: "w-100" %>
+        <div class="card-trip-infos">
+          <div>
+            <div class="d-flex align-items-center justify-content-between mb-2">
+              <h2><%= @recipe.title %></h2>
+              <%= render 'shared/favorite_button', recipe: @recipe %>
+            </div>
+            <p><%= @recipe.description %></p>
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="d-flex align-items-center">
+                <span class="badge bg-primary me-2" data-tooltip="Catégorie de cette recette"><%= @recipe.category %></span>
+                <div class="d-flex align-items-center text-muted">
+                  <%= user_avatar(@recipe.user, size: 24) %>
+                  <small class="ms-2">Par <%= @recipe.user.email.split('@').first.capitalize %></small>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
 
-    <!-- Badges informatifs -->
-    <div class="d-flex gap-2 flex-wrap my-3">
-      <!-- Badge de vues (avec tooltip) -->
-      <span class="badge bg-secondary" data-tooltip="Nombre de fois que cette recette a été consultée">
-        <i class="fas fa-eye"></i> <%= pluralize(@recipe.views_count, 'vue') %>
-      </span>
-
-      <% if @recipe.difficulty.present? %>
-        <% difficulty_color = { 'facile' => 'success', 'moyen' => 'warning', 'difficile' => 'danger' }[@recipe.difficulty] %>
-        <span class="badge bg-<%= difficulty_color %>" data-tooltip="Niveau de difficulté pour réaliser cette recette">
-          <% if @recipe.difficulty == 'facile' %>
-            <i class="fas fa-smile"></i> Facile
-          <% elsif @recipe.difficulty == 'moyen' %>
-            <i class="fas fa-meh"></i> Moyen
-          <% else %>
-            <i class="fas fa-tired"></i> Difficile
-          <% end %>
+      <!-- Badges informatifs -->
+      <div class="d-flex gap-2 flex-wrap my-3">
+        <!-- Badge de vues (avec tooltip) -->
+        <span class="badge bg-secondary" data-tooltip="Nombre de fois que cette recette a été consultée">
+          <i class="fas fa-eye"></i> <%= pluralize(@recipe.views_count, 'vue') %>
         </span>
+
+        <% if @recipe.difficulty.present? %>
+          <% difficulty_color = { 'facile' => 'success', 'moyen' => 'warning', 'difficile' => 'danger' }[@recipe.difficulty] %>
+          <span class="badge bg-<%= difficulty_color %>" data-tooltip="Niveau de difficulté pour réaliser cette recette">
+            <% if @recipe.difficulty == 'facile' %>
+              <i class="fas fa-smile"></i> Facile
+            <% elsif @recipe.difficulty == 'moyen' %>
+              <i class="fas fa-meh"></i> Moyen
+            <% else %>
+              <i class="fas fa-tired"></i> Difficile
+            <% end %>
+          </span>
+        <% end %>
+
+        <!-- Badge de date (avec tooltip) -->
+        <span class="badge bg-light text-dark" data-tooltip="Date à laquelle cette recette a été créée">
+          <i class="fas fa-calendar"></i> <%= @recipe.created_at.strftime("Créée le %d/%m/%Y") %>
+        </span>
+      </div>
+
+      <!-- Progress bars pour les temps -->
+      <% if @recipe.prep_time.present? || @recipe.cook_time.present? %>
+        <div class="recipe-progress">
+          <h6 class="mb-3"><i class="fas fa-clock me-2"></i>Temps de réalisation</h6>
+
+          <% if @recipe.prep_time.present? %>
+            <div class="progress-item">
+              <div class="progress-label">Préparation</div>
+              <div class="progress-bar-container">
+                <div class="progress-bar-fill progress-prep" style="width: <%= [@recipe.prep_time.to_f / 60 * 100, 100].min %>%"></div>
+              </div>
+              <div class="progress-time"><%= @recipe.prep_time %> min</div>
+            </div>
+          <% end %>
+
+          <% if @recipe.cook_time.present? %>
+            <div class="progress-item">
+              <div class="progress-label">Cuisson</div>
+              <div class="progress-bar-container">
+                <div class="progress-bar-fill progress-cook" style="width: <%= [@recipe.cook_time.to_f / 60 * 100, 100].min %>%"></div>
+              </div>
+              <div class="progress-time"><%= @recipe.cook_time %> min</div>
+            </div>
+          <% end %>
+
+          <% if @recipe.prep_time.present? && @recipe.cook_time.present? %>
+            <div class="progress-item">
+              <div class="progress-label"><strong>Total</strong></div>
+              <div class="progress-bar-container">
+                <div class="progress-bar-fill progress-total" style="width: <%= [(@recipe.prep_time + @recipe.cook_time).to_f / 60 * 100, 100].min %>%"></div>
+              </div>
+              <div class="progress-time"><strong><%= @recipe.prep_time + @recipe.cook_time %> min</strong></div>
+            </div>
+          <% end %>
+        </div>
       <% end %>
 
-      <!-- Badge de date (avec tooltip) -->
-      <span class="badge bg-light text-dark" data-tooltip="Date à laquelle cette recette a été créée">
-        <i class="fas fa-calendar"></i> <%= @recipe.created_at.strftime("Créée le %d/%m/%Y") %>
-      </span>
+      <!-- Actions utilisateur -->
+      <% if @recipe.user == current_user %>
+        <div class="d-flex gap-2 mt-3">
+          <%= link_to "Modifier", edit_recipe_path(@recipe), class: "btn btn-ghost", data: { tooltip: "Modifier les informations de cette recette" } %>
+          <%= button_to "Supprimer", @recipe, method: :delete, data: { turbo_confirm: "Êtes-vous sûr ?", tooltip: "Supprimer définitivement cette recette" }, class: "btn btn-danger" %>
+        </div>
+      <% end %>
     </div>
 
-    <!-- Progress bars pour les temps -->
-    <% if @recipe.prep_time.present? || @recipe.cook_time.present? %>
-      <div class="recipe-progress">
-        <h6 class="mb-3"><i class="fas fa-clock me-2"></i>Temps de réalisation</h6>
+    <div class="col-md-4">
+      <h3>Ingrédients</h3>
+      <% if @recipe.user == current_user %>
+        <%= link_to "Ajouter un ingrédient", new_recipe_ingredient_path(@recipe), class: "btn btn-gradient mb-3", data: { tooltip: "Ajouter un nouvel ingrédient à cette recette" } %>
+      <% end %>
 
-        <% if @recipe.prep_time.present? %>
-          <div class="progress-item">
-            <div class="progress-label">Préparation</div>
-            <div class="progress-bar-container">
-              <div class="progress-bar-fill progress-prep" style="width: <%= [@recipe.prep_time.to_f / 60 * 100, 100].min %>%"></div>
-            </div>
-            <div class="progress-time"><%= @recipe.prep_time %> min</div>
-          </div>
-        <% end %>
-
-        <% if @recipe.cook_time.present? %>
-          <div class="progress-item">
-            <div class="progress-label">Cuisson</div>
-            <div class="progress-bar-container">
-              <div class="progress-bar-fill progress-cook" style="width: <%= [@recipe.cook_time.to_f / 60 * 100, 100].min %>%"></div>
-            </div>
-            <div class="progress-time"><%= @recipe.cook_time %> min</div>
-          </div>
-        <% end %>
-
-        <% if @recipe.prep_time.present? && @recipe.cook_time.present? %>
-          <div class="progress-item">
-            <div class="progress-label"><strong>Total</strong></div>
-            <div class="progress-bar-container">
-              <div class="progress-bar-fill progress-total" style="width: <%= [(@recipe.prep_time + @recipe.cook_time).to_f / 60 * 100, 100].min %>%"></div>
-            </div>
-            <div class="progress-time"><strong><%= @recipe.prep_time + @recipe.cook_time %> min</strong></div>
-          </div>
-        <% end %>
-      </div>
-    <% end %>
-
-    <!-- Actions utilisateur -->
-    <% if @recipe.user == current_user %>
-      <div class="d-flex gap-2 mt-3">
-        <%= link_to "Modifier", edit_recipe_path(@recipe), class: "btn btn-ghost", data: { tooltip: "Modifier les informations de cette recette" } %>
-        <%= button_to "Supprimer", @recipe, method: :delete, data: { turbo_confirm: "Êtes-vous sûr ?", tooltip: "Supprimer définitivement cette recette" }, class: "btn btn-danger" %>
-      </div>
-    <% end %>
-  </div>
-
-  <div class="col-md-4">
-    <h3>Ingrédients</h3>
-    <% if @recipe.user == current_user %>
-      <%= link_to "Ajouter un ingrédient", new_recipe_ingredient_path(@recipe), class: "btn btn-gradient mb-3", data: { tooltip: "Ajouter un nouvel ingrédient à cette recette" } %>
-    <% end %>
-
-    <% if @recipe.ingredients.any? %>
-      <ul class="list-group">
-        <% @recipe.ingredients.each do |ingredient| %>
-          <li class="list-group-item d-flex justify-content-between align-items-center">
-            <span><strong><%= ingredient.name %></strong> - <%= ingredient.quantity %></span>
-            <% if @recipe.user == current_user %>
-              <%= button_to "×", recipe_ingredient_path(@recipe, ingredient), method: :delete, class: "btn btn-sm btn-danger", title: "Supprimer cet ingrédient", data: { tooltip: "Retirer cet ingrédient de la recette" } %>
-            <% end %>
-          </li>
-        <% end %>
-      </ul>
-    <% else %>
-      <p class="text-muted">Aucun ingrédient ajouté pour le moment.</p>
-    <% end %>
+      <% if @recipe.ingredients.any? %>
+        <ul class="list-group">
+          <% @recipe.ingredients.each do |ingredient| %>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+              <span><strong><%= ingredient.name %></strong> - <%= ingredient.quantity %></span>
+              <% if @recipe.user == current_user %>
+                <%= button_to "×", recipe_ingredient_path(@recipe, ingredient), method: :delete, class: "btn btn-sm btn-danger", title: "Supprimer cet ingrédient", data: { tooltip: "Retirer cet ingrédient de la recette" } %>
+              <% end %>
+            </li>
+          <% end %>
+        </ul>
+      <% else %>
+        <p class="text-muted">Aucun ingrédient ajouté pour le moment.</p>
+      <% end %>
+    </div>
   </div>
 </div>
