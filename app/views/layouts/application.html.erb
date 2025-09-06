@@ -124,5 +124,14 @@
         }
       });
     </script>
+    <!-- Floating Action Button -->
+    <% if user_signed_in? && !current_page?(new_recipe_path) %>
+      <%= link_to new_recipe_path, class: "fab" do %>
+        <i class="fas fa-plus"></i>
+      <% end %>
+    <% end %>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>
