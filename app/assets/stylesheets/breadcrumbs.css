@@ -31,7 +31,7 @@
 }
 
 .breadcrumb-item a {
-  color: #667eea;
+  color: #e76f51;
   text-decoration: none;
   font-weight: 500;
   transition: all 0.2s ease;
@@ -43,8 +43,8 @@
 }
 
 .breadcrumb-item a:hover {
-  background: rgba(102, 126, 234, 0.1);
-  color: #5a67d8;
+  background: rgba(244, 162, 97, 0.1);
+  color: #f4a261;
   transform: translateX(2px);
 }
 
