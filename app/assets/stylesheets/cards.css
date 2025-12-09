@@ -24,7 +24,7 @@
   content: '';
   position: absolute;
   top: 0; left: 0; right: 0; bottom: 0;
-  background: linear-gradient(45deg, rgba(22, 127, 251, 0.8), rgba(255, 107, 107, 0.8));
+  background: linear-gradient(45deg, rgba(244, 162, 97, 0.8), rgba(231, 111, 81, 0.8));
   opacity: 0;
   transition: opacity 0.3s ease;
 }
@@ -108,12 +108,12 @@
 
 /* Spécifique aux boutons custom pour override Bootstrap */
 .btn-flat:hover {
-  background: #0F60C4 !important;
-  box-shadow: 0 4px 12px rgba(22, 127, 251, 0.3);
+  background: #e76f51 !important;
+  box-shadow: 0 4px 12px rgba(244, 162, 97, 0.3);
 }
 
 .btn-ghost:hover {
-  background: rgba(22, 127, 251, 0.1) !important;
-  border-color: #167FFB !important;
-  color: #167FFB !important;
+  background: rgba(244, 162, 97, 0.1) !important;
+  border-color: #f4a261 !important;
+  color: #e76f51 !important;
 }
