@@ -72,7 +72,7 @@ main {
 }
 
 .alert-primary {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #f4a261 0%, #e76f51 100%);
   color: white;
 }
 
@@ -98,8 +98,8 @@ main {
 }
 
 .form-control:focus {
-  border-color: #667eea;
-  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+  border-color: #f4a261;
+  box-shadow: 0 0 0 3px rgba(244, 162, 97, 0.1);
   background: white;
 }
 
@@ -124,13 +124,13 @@ main {
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #f4a261 0%, #e76f51 100%);
   color: white;
 }
 
 .btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+  box-shadow: 0 8px 25px rgba(244, 162, 97, 0.3);
 }
 
 .btn-success {
@@ -150,7 +150,7 @@ main {
 
 .btn-outline-light:hover {
   background: white;
-  color: #667eea;
+  color: #e76f51;
   border-color: white;
 }
 
@@ -185,7 +185,7 @@ main {
 }
 
 .text-primary {
-  color: #667eea !important;
+  color: #e76f51 !important;
 }
 
 /* Responsive Typography */
