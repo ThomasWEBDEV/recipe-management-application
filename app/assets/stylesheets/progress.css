@@ -43,15 +43,15 @@
 }
 
 .progress-prep {
-  background: linear-gradient(90deg, #17a2b8, #20c997);
+  background: linear-gradient(90deg, #f4a261, #e9c46a);
 }
 
 .progress-cook {
-  background: linear-gradient(90deg, #ffc107, #fd7e14);
+  background: linear-gradient(90deg, #e76f51, #e9c46a);
 }
 
 .progress-total {
-  background: linear-gradient(90deg, #28a745, #20c997);
+  background: linear-gradient(90deg, #e76f51, #f4a261);
 }
 
 .progress-time {
