@@ -1,0 +1,232 @@
+/* Modern Footer Styles */
+
+.footer {
+  background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
+  color: white;
+  padding: 60px 0 20px 0;
+  margin-top: 80px;
+  position: relative;
+  overflow: hidden;
+}
+
+.footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #f4a261 0%, #e76f51 50%, #e9c46a 100%);
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 40px;
+  margin-bottom: 40px;
+}
+
+.footer-section h4 {
+  color: #f4a261;
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.footer-section p,
+.footer-section ul {
+  color: #cbd5e0;
+  font-size: 0.9rem;
+  line-height: 1.8;
+}
+
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-section ul li {
+  margin-bottom: 12px;
+  transition: transform 0.2s ease;
+}
+
+.footer-section ul li:hover {
+  transform: translateX(5px);
+}
+
+.footer-section a {
+  color: #cbd5e0;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.footer-section a:hover {
+  color: #f4a261;
+}
+
+.footer-section .fas,
+.footer-section .fab {
+  color: #f4a261;
+  font-size: 0.9rem;
+}
+
+/* Social Links */
+.social-links {
+  display: flex;
+  gap: 15px;
+  margin-top: 15px;
+}
+
+.social-link {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(244, 162, 97, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #f4a261;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.social-link:hover {
+  background: #f4a261;
+  color: white;
+  border-color: #f4a261;
+  transform: translateY(-3px);
+}
+
+/* Newsletter */
+.newsletter-form {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.newsletter-form input {
+  flex: 1;
+  padding: 12px 16px;
+  border: 2px solid rgba(244, 162, 97, 0.3);
+  border-radius: 25px;
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+}
+
+.newsletter-form input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.newsletter-form input:focus {
+  outline: none;
+  border-color: #f4a261;
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.newsletter-form button {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 25px;
+  background: linear-gradient(135deg, #f4a261 0%, #e76f51 100%);
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.newsletter-form button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(244, 162, 97, 0.4);
+}
+
+/* Footer Bottom */
+.footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 20px;
+  margin-top: 20px;
+  text-align: center;
+  color: #a0aec0;
+  font-size: 0.85rem;
+}
+
+.footer-bottom p {
+  margin: 0;
+}
+
+.footer-bottom a {
+  color: #f4a261;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.footer-bottom a:hover {
+  color: #e9c46a;
+}
+
+/* Stats Section */
+.footer-stats {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 40px;
+  padding: 30px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  backdrop-filter: blur(10px);
+}
+
+.footer-stat {
+  text-align: center;
+}
+
+.footer-stat .number {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #f4a261;
+  margin-bottom: 5px;
+  display: block;
+}
+
+.footer-stat .label {
+  color: #cbd5e0;
+  font-size: 0.85rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .footer {
+    padding: 40px 0 20px 0;
+    margin-top: 50px;
+  }
+
+  .footer-content {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .footer-stats {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .newsletter-form {
+    flex-direction: column;
+  }
+
+  .newsletter-form button {
+    width: 100%;
+  }
+
+  .social-links {
+    justify-content: center;
+  }
+}
