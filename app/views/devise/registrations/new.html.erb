@@ -1,0 +1,96 @@
+<div class="auth-container">
+  <div class="auth-card">
+    <!-- Header -->
+    <div class="auth-header">
+      <div class="auth-icon">
+        <i class="fas fa-user-plus"></i>
+      </div>
+      <h1 class="auth-title">Créer un compte</h1>
+      <p class="auth-subtitle">Rejoignez notre communauté de passionnés de cuisine</p>
+    </div>
+
+    <!-- Alerts -->
+    <% if alert %>
+      <div class="auth-alert alert-danger">
+        <i class="fas fa-exclamation-circle"></i>
+        <%= alert %>
+      </div>
+    <% end %>
+
+    <!-- Error Messages -->
+    <% if resource.errors.any? %>
+      <div class="auth-errors">
+        <h2>
+          <i class="fas fa-exclamation-triangle"></i>
+          <%= pluralize(resource.errors.count, "erreur") %> détectée(s)
+        </h2>
+        <ul>
+          <% resource.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <!-- Form -->
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "auth-form" }) do |f| %>
+
+      <!-- Email Field -->
+      <div class="form-group">
+        <%= f.label :email, class: "form-label" do %>
+          <i class="fas fa-envelope"></i>
+          Email
+        <% end %>
+        <%= f.email_field :email,
+            autofocus: true,
+            autocomplete: "email",
+            placeholder: "votreemail@exemple.com",
+            class: "form-control" %>
+      </div>
+
+      <!-- Password Field -->
+      <div class="form-group">
+        <%= f.label :password, class: "form-label" do %>
+          <i class="fas fa-lock"></i>
+          Mot de passe
+          <% if @minimum_password_length %>
+            <span style="font-weight: 400; color: #a0aec0; font-size: 0.85rem;">
+              (minimum <%= @minimum_password_length %> caractères)
+            </span>
+          <% end %>
+        <% end %>
+        <div class="password-field">
+          <%= f.password_field :password,
+              autocomplete: "new-password",
+              placeholder: "••••••••",
+              class: "form-control" %>
+        </div>
+      </div>
+
+      <!-- Password Confirmation Field -->
+      <div class="form-group">
+        <%= f.label :password_confirmation, class: "form-label" do %>
+          <i class="fas fa-check-circle"></i>
+          Confirmer le mot de passe
+        <% end %>
+        <div class="password-field">
+          <%= f.password_field :password_confirmation,
+              autocomplete: "new-password",
+              placeholder: "••••••••",
+              class: "form-control" %>
+        </div>
+      </div>
+
+      <!-- Submit Button -->
+      <%= f.submit "Créer mon compte", class: "auth-submit" %>
+    <% end %>
+
+    <!-- Footer -->
+    <div class="auth-footer">
+      <p>
+        Vous avez déjà un compte ?
+        <%= link_to "Se connecter", new_session_path(resource_name) %>
+      </p>
+    </div>
+  </div>
+</div>
