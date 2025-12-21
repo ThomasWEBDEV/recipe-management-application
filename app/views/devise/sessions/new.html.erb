@@ -1,0 +1,80 @@
+<div class="auth-container">
+  <div class="auth-card">
+    <!-- Header -->
+    <div class="auth-header">
+      <div class="auth-icon">
+        <i class="fas fa-utensils"></i>
+      </div>
+      <h1 class="auth-title">Bon retour !</h1>
+      <p class="auth-subtitle">Connectez-vous pour découvrir vos recettes préférées</p>
+    </div>
+
+    <!-- Alerts -->
+    <% if alert %>
+      <div class="auth-alert alert-danger">
+        <i class="fas fa-exclamation-circle"></i>
+        <%= alert %>
+      </div>
+    <% end %>
+
+    <% if notice %>
+      <div class="auth-alert alert-success">
+        <i class="fas fa-check-circle"></i>
+        <%= notice %>
+      </div>
+    <% end %>
+
+    <!-- Form -->
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "auth-form" }) do |f| %>
+
+      <!-- Email Field -->
+      <div class="form-group">
+        <%= f.label :email, class: "form-label" do %>
+          <i class="fas fa-envelope"></i>
+          Email
+        <% end %>
+        <%= f.email_field :email,
+            autofocus: true,
+            autocomplete: "email",
+            placeholder: "votreemail@exemple.com",
+            class: "form-control" %>
+      </div>
+
+      <!-- Password Field -->
+      <div class="form-group">
+        <%= f.label :password, class: "form-label" do %>
+          <i class="fas fa-lock"></i>
+          Mot de passe
+        <% end %>
+        <div class="password-field">
+          <%= f.password_field :password,
+              autocomplete: "current-password",
+              placeholder: "••••••••",
+              class: "form-control" %>
+        </div>
+      </div>
+
+      <!-- Remember Me & Forgot Password -->
+      <div class="auth-remember">
+        <% if devise_mapping.rememberable? %>
+          <label>
+            <%= f.check_box :remember_me %>
+            Se souvenir de moi
+          </label>
+        <% end %>
+        <%= link_to "Mot de passe oublié ?", new_password_path(resource_name), class: "auth-link" %>
+      </div>
+
+      <!-- Submit Button -->
+      <%= f.submit "Se connecter", class: "auth-submit" %>
+    <% end %>
+
+    <!-- Footer -->
+    <div class="auth-footer">
+      <p>
+        Pas encore de compte ?
+        <%= link_to "Créer un compte", new_registration_path(resource_name) %>
+      </p>
+    </div>
+  </div>
+</div>
